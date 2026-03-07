@@ -1,0 +1,38 @@
+{
+  "name": "telegram-approval-sidecar",
+  "version": "0.3.0",
+  "description": "Portable OpenClaw plugin for forwarding exec approvals to Telegram",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "telegram",
+    "approval"
+  ],
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "README.md",
+    "src/**/*"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "json5": "^2.2.3",
+    "undici": "^7.16.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "telegram-approval-sidecar",
+  "name": "Telegram Approval Sidecar",
+  "description": "将 OpenClaw exec 审批请求转发到 Telegram，并提供中文按钮审批。",
+  "version": "0.3.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "defaultTarget": { "type": "string" },
+      "threadId": { "type": "number" },
+      "routingMode": { "type": "string", "enum": ["default-target", "session-or-default", "targets-only"] },
+      "fallbackTarget": { "type": "string" },
+      "agentIds": { "type": "array", "items": { "type": "string" } },
+      "sessionKeyPatterns": { "type": "array", "items": { "type": "string" } },
+      "requestTimeoutMs": { "type": "number" },
+      "retryCount": { "type": "number" },
+      "retryBaseMs": { "type": "number" },
+      "reconnectBaseMs": { "type": "number" },
+      "reconnectMaxMs": { "type": "number" },
+      "networkProxyUrl": { "type": "string" },
+      "gatewayCredential": { "type": "string" },
+      "gatewayPassphrase": { "type": "string" },
+      "botCredential": { "type": "string" },
+      "accountId": { "type": "string" }
+    }
+  },
+  "uiHints": {
+    "defaultTarget": { "label": "默认 Telegram 目标", "help": "默认接收审批消息的聊天目标标识。" },
+    "threadId": { "label": "默认话题 ID", "help": "发往论坛群组时使用的话题标识。" },
+    "routingMode": { "label": "路由模式", "help": "优先回原 Telegram 会话，或统一回退到默认目标。" },
+    "fallbackTarget": { "label": "回退目标", "help": "无法回到原会话时，回退发送到这个 Telegram 目标。" },
+    "agentIds": { "label": "允许 Agent 列表" },
+    "sessionKeyPatterns": { "label": "SessionKey 过滤正则" },
+    "networkProxyUrl": { "label": "网络代理地址", "advanced": true },
+    "gatewayCredential": { "label": "网关凭据", "sensitive": true, "advanced": true },
+    "gatewayPassphrase": { "label": "网关口令", "sensitive": true, "advanced": true },
+    "botCredential": { "label": "机器人凭据", "sensitive": true, "advanced": true }
+  }
+}
