@@ -39,7 +39,6 @@ const plugin = {
         const config = buildRuntimeConfigFromPlugin({
           openclawConfig: api.config as Record<string, unknown>,
           pluginConfig: api.pluginConfig,
-          stateFile: `/approval-state.json`,
         });
         const logger: LoggerLike = {
           info: (message) => api.logger.info(message),
