@@ -148,6 +148,88 @@ telegram-approval-sidecar/
 
 ## 安装方式
 
+### 从 Clone 到安装完成
+
+如果你是在一台新机器上从仓库开始部署，建议直接按下面顺序执行。
+
+#### 1. 克隆仓库
+
+```bash
+git clone https://github.com/vikingleo/openclaw-telegram-approval-sidecar.git
+cd openclaw-telegram-approval-sidecar
+```
+
+#### 2. 安装插件
+
+开发联调推荐软链接安装：
+
+```bash
+openclaw plugins install -l .
+```
+
+普通机器更适合复制安装：
+
+```bash
+openclaw plugins install .
+```
+
+#### 3. 在宿主配置里启用插件
+
+把下面这段合并进 `openclaw.json`：
+
+```json5
+{
+  plugins: {
+    entries: {
+      "telegram-approval-sidecar": {
+        enabled: true,
+        config: {
+          stateFile: "~/.local/state/openclaw-telegram-approval-sidecar/approval-state.json",
+          defaultTarget: "<TELEGRAM_TARGET>",
+          routingMode: "session-or-default",
+          fallbackTarget: "<TELEGRAM_TARGET>",
+          agentIds: ["main", "coder", "company"]
+        }
+      }
+    }
+  }
+}
+```
+
+最少要保证两件事已经存在：
+
+- 宿主里已经有可用的 Telegram 机器人凭据
+- `defaultTarget` 或 `fallbackTarget` 至少有一个能收消息
+
+#### 4. 重启宿主
+
+```bash
+openclaw gateway restart
+```
+
+#### 5. 验证是否安装成功
+
+先看插件摘要：
+
+```bash
+openclaw approval-telegram status
+```
+
+需要时再做一次主动自检：
+
+```bash
+openclaw approval-telegram self-test
+openclaw approval-telegram self-test --send --target <TELEGRAM_TARGET>
+```
+
+再看网关日志：
+
+```bash
+journalctl --user -u openclaw-gateway.service -n 80 --no-pager | rg 'telegram-approval-sidecar|审批'
+```
+
+如果状态摘要里已经出现 `stateFile`、`hasBotCredential: true`，并且日志里能看到插件已连接 Gateway，就说明“clone -> 安装 -> 生效”已经完成。
+
 ### 方式一：本地开发链接安装
 
 适合你现在这种本地仓库直接接入 OpenClaw。

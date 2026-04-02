@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- README 补充“从 clone 到安装完成”的安装、配置与验证全流程
 - 默认审批状态文件改为持久化目录 `~/.local/state/openclaw-telegram-approval-sidecar/approval-state.json`
 - 新增 `stateFile` 插件配置项、配置示例和 CLI 状态输出
 - 避免默认把审批映射写到系统临时目录，减少重启或清理 `/tmp` 后状态丢失
