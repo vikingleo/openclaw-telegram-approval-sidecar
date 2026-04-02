@@ -12,11 +12,16 @@ export function buildRuntimeConfigFromPlugin(params: {
   pluginConfig?: Record<string, unknown>;
   stateFile?: string;
 }): RuntimeConfig {
-  const stateFile = params.stateFile ?? path.join(resolveDefaultPluginStateDir(), "approval-state.json");
+  const sidecarConfig = (params.pluginConfig ?? {}) as AnyConfig;
+  const stateFile = expandHome(
+    params.stateFile
+    ?? readString(sidecarConfig.stateFile)
+    ?? path.join(resolveDefaultPluginStateDir(), "approval-state.json"),
+  );
 
   return buildRuntimeConfig({
     openclawConfig: params.openclawConfig,
-    sidecarConfig: params.pluginConfig ?? {},
+    sidecarConfig,
     sourceLabel: "plugin-config",
     stateFile,
   });
@@ -33,7 +38,7 @@ export function expandHome(inputPath: string): string {
 }
 
 export function resolveDefaultPluginStateDir(): string {
-  return path.join(os.tmpdir(), "telegram-approval-sidecar");
+  return path.join(os.homedir(), ".local", "state", "openclaw-telegram-approval-sidecar");
 }
 
 function buildRuntimeConfig(params: {

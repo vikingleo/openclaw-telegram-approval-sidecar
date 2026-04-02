@@ -7,6 +7,7 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+      "stateFile": { "type": "string" },
       "defaultTarget": { "type": "string" },
       "threadId": { "type": "number" },
       "routingMode": { "type": "string", "enum": ["default-target", "session-or-default", "targets-only"] },
@@ -26,6 +27,7 @@
     }
   },
   "uiHints": {
+    "stateFile": { "label": "状态文件", "help": "审批消息映射的本地持久化文件路径。", "advanced": true },
     "defaultTarget": { "label": "默认 Telegram 目标", "help": "默认接收审批消息的聊天目标标识。" },
     "threadId": { "label": "默认话题 ID", "help": "发往论坛群组时使用的话题标识。" },
     "routingMode": { "label": "路由模式", "help": "优先回原 Telegram 会话，或统一回退到默认目标。" },

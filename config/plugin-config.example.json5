@@ -4,6 +4,7 @@
       "telegram-approval-sidecar": {
         enabled: true,
         config: {
+          stateFile: "~/.local/state/openclaw-telegram-approval-sidecar/approval-state.json",
           defaultTarget: "<TELEGRAM_TARGET>",
           routingMode: "session-or-default",
           fallbackTarget: "<TELEGRAM_TARGET>",

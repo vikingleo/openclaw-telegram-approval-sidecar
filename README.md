@@ -311,7 +311,8 @@ openclaw gateway restart
 
 插件模式默认状态文件位置：
 
-- `OpenClaw 插件运行状态文件`
+- 默认：`~/.local/state/openclaw-telegram-approval-sidecar/approval-state.json`
+- 可通过插件配置 `stateFile` 覆盖
 
 ## 调试与排障
 
@@ -329,6 +330,7 @@ journalctl --user -u openclaw-gateway.service -f
 
 你应该能看到类似日志：
 
+- `stateFile: /home/USER/.local/state/openclaw-telegram-approval-sidecar/approval-state.json`
 - `配置来源: plugin-config`
 - `已连接 OpenClaw Gateway`
 - `已转发审批 ... 到 Telegram ...`
@@ -385,4 +387,3 @@ journalctl --user -u openclaw-gateway.service -f
 - 更丰富的审批卡片字段
 - callback_data 超长时的短 凭据 shim
 - 更细粒度的 agent / session / target 路由规则
-

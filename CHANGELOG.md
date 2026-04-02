@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- 默认审批状态文件改为持久化目录 `~/.local/state/openclaw-telegram-approval-sidecar/approval-state.json`
+- 新增 `stateFile` 插件配置项、配置示例和 CLI 状态输出
+- 避免默认把审批映射写到系统临时目录，减少重启或清理 `/tmp` 后状态丢失
+
 ## 0.3.0 - 2026-03-07
 
 - 正式收尾为可移植 `OpenClaw` 插件，不再以独立 sidecar 作为推荐部署方式

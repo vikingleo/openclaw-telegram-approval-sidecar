@@ -75,6 +75,7 @@ function resolveCliRuntimeConfig(params: {
 
 function summarizeConfig(config: ReturnType<typeof resolveCliRuntimeConfig>) {
   return {
+    stateFile: config.storage.stateFile,
     gatewayUrl: config.gateway.url,
     hasGatewayCredential: Boolean(config.gateway.token),
     hasGatewayPassphrase: Boolean(config.gateway.password),
